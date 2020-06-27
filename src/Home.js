@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 const Home = (props) => {
   return (
-    <div className="px-200 py-5">
+    <div className="px- py-5">
       <img
         className="object-none object-center"
         src="https://img.finalfantasyxiv.com/lds/h/j/777s7HTUaw_dihYPnSw9vkiHIM.png"

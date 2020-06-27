@@ -22,7 +22,7 @@ const Items = () => {
 
   mitems = items_array.map((element, key) => {
     if (element.Name === "") {
-      console.log("Vacio");
+      console.log("Vacios");
     } else {
       return <Item title={element.Name} image={url_prefix + element.Icon} />;
     }
