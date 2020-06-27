@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Nav from "./Nav";
+import Home from "./Home";
+import Items from "./Items";
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
+  const [image, setImages] = useState("");
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const fetchItems = async () => {
+    const data = await fetch("https://xivapi.com/Item");
+
+    const items = await data.json();
+
+    console.log(items.Results);
+
+    setImages(items.Results[5].Icon);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Nav />
+        <Switch>
+          <Route path="/items" exact component={Items} />
+          <Route path="/" exact component={Home} />
+        </Switch>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
